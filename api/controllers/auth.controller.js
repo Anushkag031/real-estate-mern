@@ -67,6 +67,7 @@ export const login = async (req, res) => {
         expiresIn: age
     })
 
+    const {password:userPassword,...userInfo}=user
 
 
     
@@ -77,7 +78,7 @@ export const login = async (req, res) => {
         //secure:true,
        // sameSite:"none"
        maxAge:age,
-        }).status(200).json({ message: "Login successful" });
+        }).status(200).json(userInfo);
    
 
   } catch (error) {
