@@ -10,7 +10,7 @@ function Navbar() {
     <nav>
       <div className="left">
         <a href="/" className="logo">
-          <img src="/logo.png" alt="" />
+          <img src="/logo1.jpeg" alt="" />
           <span>UrbanNest</span>
         </a>
         <a href="/">Home</a>
