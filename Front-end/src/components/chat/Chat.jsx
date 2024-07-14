@@ -9,50 +9,50 @@ function Chat() {
         <h1>Messages</h1>
         <div className="message">
           <img
-            src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="avatarImg.avif"
             alt=""
           />
-          <span>John Doe</span>
+          <span>Anushka</span>
           <p>Lorem ipsum dolor sit amet...</p>
         </div>
         <div className="message">
           <img
-            src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="avatarImg.avif"
             alt=""
           />
-          <span>John Doe</span>
+          <span>Anushka</span>
           <p>Lorem ipsum dolor sit amet...</p>
         </div>
         <div className="message">
           <img
-            src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="avatarImg.avif"
             alt=""
           />
-          <span>John Doe</span>
+          <span>Anushka</span>
           <p>Lorem ipsum dolor sit amet...</p>
         </div>
         <div className="message">
           <img
-            src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="avatarImg.avif"
             alt=""
           />
-          <span>John Doe</span>
+          <span>Anushka</span>
           <p>Lorem ipsum dolor sit amet...</p>
         </div>
         <div className="message">
           <img
-            src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="avatarImg.avif"
             alt=""
           />
-          <span>John Doe</span>
+          <span>Anushka</span>
           <p>Lorem ipsum dolor sit amet...</p>
         </div>
         <div className="message">
           <img
-            src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="avatarImg.avif"
             alt=""
           />
-          <span>John Doe</span>
+          <span>Anushka</span>
           <p>Lorem ipsum dolor sit amet...</p>
         </div>
       </div>
@@ -61,10 +61,10 @@ function Chat() {
           <div className="top">
             <div className="user">
               <img
-                src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src="avatarImg.avif"
                 alt=""
               />
-              John Doe
+              Anushka
             </div>
             <span className="close" onClick={()=>setChat(null)}>X</span>
           </div>
