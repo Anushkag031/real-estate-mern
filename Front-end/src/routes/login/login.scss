@@ -30,7 +30,7 @@
         cursor: pointer;
 
         &:disabled{
-          background-color: #BED9D8;
+          background-color:  #dceaf7;
           cursor: not-allowed;
         }
       }
@@ -50,7 +50,7 @@
 
   .imgContainer {
     flex: 2;
-    background-color: #c3e6fbbb;
+    background-color: #dceaf7;
     display: flex;
     align-items: center;
     justify-content: center;
