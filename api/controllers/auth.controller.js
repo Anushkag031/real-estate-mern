@@ -66,6 +66,7 @@ export const login = async (req, res) => {
     {
         expiresIn: age
     })
+    console.log(token);
 
     const {password:userPassword,...userInfo}=user
 
