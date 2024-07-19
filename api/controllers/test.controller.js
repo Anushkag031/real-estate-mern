@@ -10,12 +10,27 @@ export const shouldBeLoggedIn=async(req,res) => {
    jwt
     .verify(token, process.env.JWT_SECRET_KEY, async(err, user) => {
       if (err) {
-        return res.status(403).json({ message: "Not authenticated, please try again !" });
+        return res.status(403).json({ message: "Token is not valid!" });
       }
       console.log(user);
       res.status(200).json({message:"You are authenticated"});
     }); 
 }
 export const shouldBeAdmin=async(req,res) => {
-    
+    const token=req.cookies.token
+
+    if(!token) return res.status(401).json({message:"Not authenticated, please try again !"});
+
+   jwt
+    .verify(token, process.env.JWT_SECRET_KEY, async(err, user) => {
+      if (err) {
+        return res.status(403).json({ message: "Token is not valid !" });
+      }
+      if(!user.isAdmin)
+        {
+            return res.status(403).json({ message: "Not authenticated, please try again !" });
+        }
+      console.log(user);
+      res.status(200).json({message:"You are authenticated"});
+    }); 
 }
