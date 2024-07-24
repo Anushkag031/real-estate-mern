@@ -22,13 +22,13 @@ export const AuthContextProvider=({children})=>{
   
     // Log currentUser whenever it changes
     useEffect(() => {
-      console.log('Current User in Provider:', currentUser); // Debug log
+      console.log('Current User in Provider:', currentUser); 
     }, [currentUser]);
   
     // Function to update the user and save to localStorage
     const updatedUser = (data) => {
       setCurrentUser(data);
-      console.log('Updated user:', data); // Debug log
+      console.log('Updated user:', data); 
     };
   
     // Save currentUser to localStorage whenever it changes
@@ -37,7 +37,7 @@ export const AuthContextProvider=({children})=>{
         localStorage.setItem("user", JSON.stringify(currentUser));
       } else {
         localStorage.removeItem("user");
-        console.log('Removing user from localStorage'); // Debug log
+        console.log('Removing user from localStorage'); 
       }
     }, [currentUser]);
     return(
