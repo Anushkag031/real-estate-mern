@@ -8,7 +8,7 @@ function HomePage() {
   const {currentUser}=useContext(AuthContext);
   console.log("currentUser",currentUser);
 
-  if(!currentUser) return <div>loading...</div>
+  //if(!currentUser) return <div>loading...</div>
     
   return (
     <div className="homePage">
