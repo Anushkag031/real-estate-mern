@@ -3,7 +3,7 @@ import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
 import apiRequest from "../../lib/apiRequest";
 import "./profilePage.scss";
-import { useContext } from "react";
+import { useContext} from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 function ProfilePage() {
@@ -12,6 +12,8 @@ function ProfilePage() {
 
 
   const naviagte=useNavigate()
+
+ 
 
   const handleLogout = async()=> {
     try {

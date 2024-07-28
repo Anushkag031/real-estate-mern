@@ -4,18 +4,6 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useContext} from "react";
 import { AuthContext } from "../../context/AuthContext";
 
-function Layout() {
-  return (
-    <div className="layout">
-      <div className="navbar">
-        <Navbar />
-      </div>
-      <div className="content">
-        <Outlet/>
-      </div>
-    </div>
-  );
-}
 
 function RequireAuth() { // check again
   const {currentUser}=useContext(AuthContext);
@@ -25,7 +13,7 @@ function RequireAuth() { // check again
 
 
   return (
-    <div className="layout">
+    currentUser && (<div className="layout">
       <div className="navbar">
         <Navbar />
       </div>
@@ -33,12 +21,8 @@ function RequireAuth() { // check again
         <Outlet/>
       </div>
     </div>
+    )
   );
 }
 
-export  {Layout,RequireAuth};
-
-
-
-
-
+export default RequireAuth;
