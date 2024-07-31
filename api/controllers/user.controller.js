@@ -26,6 +26,7 @@ export const updatedUser = async (req, res) => {
       },
       data:body
     });
+    
     res.status(200).json(updatedUser);
    // res.status(200).json(users);
   } catch (error) {
