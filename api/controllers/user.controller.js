@@ -12,17 +12,23 @@ export const getUsers = async (req, res) => {
 };
 export const updatedUser = async (req, res) => {
   try {
-    //const users = await User.find();
+    //const users = await prisma.user.findUnique();
    // res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: "Failed to update Users" });
   }
 };
 export const getUser = async (req, res) => {
+  const id = req.params.id;
   try {
-    //const users = await User.find();
-    //res.status(200).json(users);
+   const user = await prisma.user.findUnique({
+      where: {
+        id
+      },
+    });
+    res.status(200).json(user);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Failed to get User" });
   }
 };
