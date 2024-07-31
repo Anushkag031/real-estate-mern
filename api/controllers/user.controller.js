@@ -1,33 +1,33 @@
 export const getUsers = async (req, res) => {
     console.log("getUsers");
-    
+
   try {
-    const users = await User.find();
-    res.status(200).json(users);
+   // const users = await User.find();
+   // res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: "Failed to get Users" });
   }
 };
 export const updatedUser = async (req, res) => {
   try {
-    const users = await User.find();
-    res.status(200).json(users);
+    //const users = await User.find();
+   // res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: "Failed to update Users" });
   }
 };
 export const getUser = async (req, res) => {
   try {
-    const users = await User.find();
-    res.status(200).json(users);
+    //const users = await User.find();
+    //res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: "Failed to get User" });
   }
 };
 export const deleteUser = async (req, res) => {
   try {
-    const users = await User.find();
-    res.status(200).json(users);
+   // const users = await User.find();
+   // res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: "Failed to delete Users" });
   }
