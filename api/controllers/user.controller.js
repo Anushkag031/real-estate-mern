@@ -14,6 +14,7 @@ export const updatedUser = async (req, res) => {
   const id = req.params.id;
   const tokenUserId=req.userId;
   const body=req.body;
+  
 
   if(id!==tokenUserId)
   {
@@ -26,7 +27,7 @@ export const updatedUser = async (req, res) => {
       },
       data:body
     });
-    
+
     res.status(200).json(updatedUser);
    // res.status(200).json(users);
   } catch (error) {
