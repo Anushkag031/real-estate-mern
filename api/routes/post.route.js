@@ -6,9 +6,9 @@ const router= express.Router();
 
 router.get("/",getPosts);
 router.get("/:id",getPost);
-router.get("/:id",verifyToken, addPost);
-router.get("/:id",verifyToken,updatePost);
-router.get("/:id",verifyToken,deletePost);
+router.post("/",verifyToken, addPost);
+router.put("/:id",verifyToken,updatePost);
+router.delete("/:id",verifyToken,deletePost);
 
 
 export default router;
