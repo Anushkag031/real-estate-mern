@@ -65,10 +65,12 @@
     gap: 20px;
     align-items: center;
     justify-content: center;
+    
+    //overflow: scroll;
 
     img {
       width: 50%;
-      height: 180px;
+      height: 140px;
       object-fit: cover;
       border-radius: 5px;
     }
