@@ -16,7 +16,17 @@ export const getPost = async(req, res) => {
     try {
         const post = await prisma.post.findUnique(
             {
+                //these are details of the post being published, show in postman 
                 where: {id},
+                include:{
+                    postDetail: true,
+                    user:{
+                        select:{
+                            username:true,
+                            avatar:true
+                        }
+                    }
+                }
             }
         )
         res.status(200).json(post);
@@ -29,20 +39,32 @@ export const getPost = async(req, res) => {
 }
 export const addPost = async(req, res) => {
     const body=req.body;
-    const tokenUserId=req.userId;
+
+
+    if (!body.postData || !body.postDetail) {
+        return res.status(400).json({ message: "Missing post data or post detail" });
+    }
+
+    console.log("Received body:", JSON.stringify(req.body)); // Better debugging
+    const tokenUserId = req.userId;
     try {
 
         const newPost= await prisma.post.create({
             data:{
-                ...body,
+                ...body.postData,
                 userId: tokenUserId,
+                postDetail:{
+                    create: body.postDetail,
+
+                },
+
             }
         })
 
         res.status(200).json(newPost);
         
     } catch (error) {
-        console.log(error);
+        console.error("Failed to add post:", error.message); 
         res.status(500).json({message : "Failed to add posts"});
         
     }
@@ -83,3 +105,5 @@ export const deletePost = async(req, res) => {
         
     }
 }
+
+//post details are for get post i.e for user not for all posts in postman
