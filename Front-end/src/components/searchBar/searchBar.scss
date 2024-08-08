@@ -71,21 +71,29 @@
         border: 1px solid #999;
       }
     }
-
-    button {
-      border: none;
-      cursor: pointer;
-      background-color: #419edc;
+    a{
       flex: 1;
-
-      @include sm{
-        padding: 10px;
-      }
-
-      img {
-        width: 24px;
-        height: 24px;
+      background-color: #419edc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      button {
+        border: none;
+        cursor: pointer;
+        background-color: #419edc;
+        flex: 1;
+       
+  
+        @include sm{
+          padding: 10px;
+        }
+  
+        img {
+          width: 24px;
+          height: 24px;
+        }
       }
     }
+    
   }
 }
