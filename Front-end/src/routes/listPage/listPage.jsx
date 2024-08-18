@@ -8,6 +8,7 @@ import { Suspense } from "react";
 function ListPage() {
   //const data = listData;
   const data=useLoaderData()
+  console.log("data list",data)
 
 
   return <div className="listPage">

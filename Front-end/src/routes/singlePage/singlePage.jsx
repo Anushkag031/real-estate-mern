@@ -11,8 +11,11 @@ import apiRequest from "../../lib/apiRequest";
 
 function SinglePage() {
   const post = useLoaderData();
+  /*if(!post){
+    return <div>Loading...</div>
+  }*/
   
- // console.log("posts",post);
+  console.log("posts",post);
 
  const [saved,setSaved]=useState(post.isSaved);
 

@@ -1,12 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
+import {   Link, useLoaderData, useNavigate } from "react-router-dom";
 import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
 import apiRequest from "../../lib/apiRequest";
 import "./profilePage.scss";
-import { useContext} from "react";
+import {  useContext} from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 function ProfilePage() {
+  const data= useLoaderData();
+  
+   console.log("pfp",data);
+   console.log("pfp dr",data.postResponse);
 
   const {updatedUser,currentUser}=useContext(AuthContext);
 
@@ -27,6 +31,13 @@ function ProfilePage() {
       console.error(err.message);
     }
   }
+
+
+  const userPosts = data.postResponse.data || [];
+  console.log("userPosts",userPosts);
+  const savedPosts =data.postResponse.savedPosts || [];
+  console.log("savedPosts",savedPosts);
+  
   return (
     <div className="profilePage">
       <div className="details">
@@ -60,11 +71,28 @@ function ProfilePage() {
             <button>Create New Post</button>
             </Link>
           </div>
-          <List />
+          <List posts={userPosts} />
+        { /* <Suspense fallback={<p>Loading...</p>}>
+            <Await
+              resolve={data.postResponse}
+              console="Error loading posts!"
+              errorElement={<p>Error loading posts!</p>}
+            >
+              {(postResponse) => <List posts={postResponse?.data?.userPosts || []} />}
+            </Await>
+          </Suspense>*/}
           <div className="title">
             <h1>Saved List</h1>
           </div>
-          <List />
+          {/*<Suspense fallback={<p>Loading...</p>}>
+            <Await
+              resolve={data.postResponse}
+              errorElement={<p>Error loading posts!</p>}
+            >
+              {(postResponse) => <List posts={postResponse?.data?.savedPosts || []} />}
+            </Await>
+          </Suspense>*/}
+          <List posts={savedPosts} />
         </div>
       </div>
       <div className="chatContainer">

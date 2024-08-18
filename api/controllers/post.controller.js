@@ -2,6 +2,7 @@ import prisma from "../lib/prisma.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+
 export const getPosts = async(req, res) => {
     const query=req.query;
     console.log("Query:", query);
@@ -31,6 +32,12 @@ export const getPosts = async(req, res) => {
 }
 export const getPost = async(req, res) => {
     const id=req.params.id;
+    console.log("Post ID:", id);
+    if(!id) {
+        console.log("Missing post ID");
+        return res.status(400).json({message: "Missing post ID"});
+        
+    }
     try {
         const post = await prisma.post.findUnique(
             {
@@ -47,37 +54,33 @@ export const getPost = async(req, res) => {
                 }
             }
         )
-        let userId;
-        const token=req.cookies.token;
+        let userId = null;
+        const token = req.cookies?.token;
+        //const token = req.headers.authorization?.split(" ")[1];
 
-        if(!token){
-            userId=null;
+        if (token) {
+            try {
+                const payload = jwt.verify(token, process.env.JWT_SECRET_KEY);
+                userId = payload.id;
+            } catch (err) {
+                console.error("Token verification failed:", err);
+                userId = null;
+            }
         }
-        else{
-            //verify token
-            jwt.verify(token, process.env.JWT_SECRET_KEY, async(err,payload)=>{
-                if(err){
-                    userId=null;
-                }
-                else{
-                    //authenticated user id
-                    userId=payload.id;
-                }
-            })
 
+        //console.log("User ID1:", userId);
 
-            
-        }
-        const saved=await prisma.savedPost.findUnique({
-            where:{
-                userId_postId:{
+        const saved = await prisma.savedPost.findUnique({
+            where: {
+                userId_postId: {
+                    postId: id,
                     userId,
-                    postId:id
                 }
             },
-        })
+        });
 
-        res.status(200).json({...post,isSaved : saved ? true : false});
+        res.status(200).json({ ...post, isSaved: saved ? true : false });
+
         
     } catch (error) {
         console.log(error);
@@ -86,15 +89,19 @@ export const getPost = async(req, res) => {
     }
 }
 export const addPost = async(req, res) => {
+
     const body=req.body;
+
 
 
     if (!body.postData || !body.postDetail) {
         return res.status(400).json({ message: "Missing post data or post detail" });
     }
+    console.log("Received body raw:", req.body);
 
     console.log("Received body:", JSON.stringify(req.body)); // Better debugging
     const tokenUserId = req.userId;
+    console.log("Token user ID:", tokenUserId);
     try {
 
         const newPost= await prisma.post.create({
@@ -108,7 +115,7 @@ export const addPost = async(req, res) => {
 
             }
         })
-
+        console.log("New post:", newPost);
         res.status(200).json(newPost);
         
     } catch (error) {

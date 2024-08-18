@@ -48,7 +48,8 @@ export const updatedUser = async (req, res) => {
   }
 };
 export const getUser = async (req, res) => {
-  const id = req.params.id;
+  const id = req.userId;
+  console.log("getUser",id);
   try {
    const user = await prisma.user.findUnique({
       where: {
@@ -96,8 +97,9 @@ export const savePost = async (req, res) => {
      where: {
         
         userId_postId:{
-          userId:tokenUserId,
           postId,
+          userId:tokenUserId,
+          
         }
         
       },
@@ -124,18 +126,23 @@ export const savePost = async (req, res) => {
    
     //res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Failed to delete Users" });
+    res.status(500).json({ message: "Failed to save posts" });
   }
 };
+
 export const profilePosts = async (req, res) => {
-  const tokenUserId = req.params.userId;
+  const tokenUserId = req.userId;
+  console.log("Token user ID1:", tokenUserId);
   try {
     const userPosts= await prisma.post.findMany({
       where: {
         userId:tokenUserId
       },
     });
-    res.status(200).json(userPosts);
+    if (!userPosts) {
+      return res.status(404).json({ error: "No posts found" });
+  }
+    //res.status(200).json(userPosts);
 
     const saved= await prisma.savedPost.findMany({
       where: {
@@ -146,12 +153,13 @@ export const profilePosts = async (req, res) => {
       }
     });
 
-    const savedPosts=saved.map(item => item.post);
-  
-
-   
-
+    const savedPosts=saved.map((item) => item.post);
+    
+    console.log("userPosts",userPosts || 0);
+    
+    console.log("savedPosts",savedPosts || 0);
     res.status(200).json({userPosts,savedPosts});
+    
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Failed to get ProfilePosts" });

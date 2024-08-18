@@ -16,6 +16,7 @@ function NewPostPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    console.log(formData);
     const inputs = Object.fromEntries(formData);
     inputs.description=value;
     console.log(inputs);
@@ -51,7 +52,7 @@ function NewPostPage() {
        
       });
 navigate("/"+response.data.id)
-      //console.log(response);
+      console.log(response);
     } catch (err) {
       console.log(err);
       setError(error);
