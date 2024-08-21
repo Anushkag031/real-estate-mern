@@ -5,6 +5,7 @@ export const getChats = async (req, res) => {
     console.log("getchats");
 
     const tokenUserId = req.userId;
+    
 
   try {
     const chats = await prisma.chat.findMany({
