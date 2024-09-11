@@ -5,14 +5,14 @@ import  {verifyToken } from '../middleware/verifyToken.js';
 const router= express.Router();
 
 //routes
-router.get('/',verifyToken, getChats) // all users
-router.get('/:id',verifyToken, getChat) //single user
+router.get('/',verifyToken, getChats) 
+router.get('/:id',verifyToken, getChat) 
 
-router.post('/',verifyToken,addChat) //update user
+router.post('/',verifyToken,addChat) 
 
 
-router.post("/read/:id",verifyToken,readChat) //save post
-//router.get('/posts/:id', getPost);
+router.put("/read/:id",verifyToken,readChat)
+
 
 
 
