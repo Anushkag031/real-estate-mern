@@ -5,7 +5,7 @@ import { verifyToken } from '../middleware/verifyToken.js';
 const router= express.Router();
 
 //routes
-router.post('/register',verifyToken,addMessage) // register route
+router.post('/:chatId',verifyToken,addMessage) // register route
 
 
 
